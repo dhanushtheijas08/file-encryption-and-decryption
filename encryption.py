@@ -1,6 +1,15 @@
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto.Util.Padding import pad,unpad
+import argparse
+
+#! Getting inputs in command-line
+parser = argparse.ArgumentParser(description="Encrypt a file")
+parser.add_argument('filename', help='File to encrypt')
+parser.add_argument('-p', '--password', help='Password')
+args = parser.parse_args()
+file_name = args.filename
+pwd = args.password
 
 
 def password(pwd):    
@@ -22,7 +31,8 @@ def encoding(file_name,hashed_pwd):
     except FileNotFoundError :
         print("Error : File Not Found")        
 
-    
-file_name = input("Enter the file name with extension : ")
-pwd = input("Enter your password : ")
+#! Getting input while running the python file
+# file_name = input("Enter the file name with extension : ")
+# pwd = input("Enter your password : ")
+
 encoding(file_name,password(pwd))

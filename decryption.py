@@ -1,6 +1,15 @@
 from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 from Crypto.Util.Padding import pad,unpad
+import argparse
+
+#! Getting inputs in command-line
+parser = argparse.ArgumentParser(description="Encrypt a file")
+parser.add_argument('filename', help='File to encrypt')
+parser.add_argument('-p', '--password', help='Password')
+args = parser.parse_args()
+file_name = args.filename
+pwd = args.password
 
 
 def password(pwd):    
@@ -23,6 +32,7 @@ def decoding(file_name,hashed_pwd):
     except ValueError:
         print("Error : Incorrect Password")     
             
-file_name = input("Enter the file name to be decrypted with extension : ")
-pwd = input("Enter your password : ")
+#! Getting input while running the python file
+# file_name = input("Enter the file name to be decrypted with extension : ")
+# pwd = input("Enter your password : ")
 decoding(file_name,password(pwd))
